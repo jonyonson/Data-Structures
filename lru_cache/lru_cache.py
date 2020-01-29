@@ -53,13 +53,13 @@ class LRUCache:
                 self.dll.remove_from_head()
                 self.current_size -= 1
 
-            self.dll.add_to_tail([key, value])
+            self.dll.add_to_tail((key, value))
             self.storage[key] = self.dll.tail
             self.current_size += 1
         else:
             # overwrite the old value associated with the key
             node = self.storage[key]
-            node.value = [key, value]
+            node.value = (key, value)
             self.dll.move_to_end(node)
 
 

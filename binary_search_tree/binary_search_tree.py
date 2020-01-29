@@ -12,7 +12,7 @@ class BinarySearchTree:
 
     # Insert the given value into the tree
     def insert(self, value):
-        # compare root nodea
+        # compare root nodes
         # if lesser, go to left child
         # if greater or = go to right child
         # if no child, on that side, insert
@@ -50,7 +50,9 @@ class BinarySearchTree:
     # Return the maximum value found in the tree
     def get_max(self):
         # go right until no more right
-        pass
+        if self.right is None:
+            return self.value
+        return self.right.get_max()
 
     # Call the function `cb` on the value of each node
     # You may use a recursive or iterative approach

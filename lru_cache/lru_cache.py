@@ -47,19 +47,20 @@ class LRUCache:
     """
 
     def set(self, key, value):
-
         if key not in self.storage:
-            self.dll.add_to_tail((key, value))
+            if self.current_size == self.limit:
+                self.storage.pop(self.dll.head.value[0])
+                self.dll.remove_from_head()
+                self.current_size -= 1
+
+            self.dll.add_to_tail([key, value])
             self.storage[key] = self.dll.tail
             self.current_size += 1
-
-        # overwrite the old value associated with the key
-        node = self.storage[key]
-        node.value = (key, value)
-        self.dll.move_to_end(node)
-
-        # if self.current_size == self.limit:
-        #     # add the oldest entry in the cache
+        else:
+            # overwrite the old value associated with the key
+            node = self.storage[key]
+            node.value = [key, value]
+            self.dll.move_to_end(node)
 
 
 # cache = LRUCache(3)

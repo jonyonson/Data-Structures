@@ -36,7 +36,16 @@ class BinarySearchTree:
         # If no left child, return none
         # if value is >= node go right and repeat
         # if no right child return none
-        pass
+        if self.value == target:
+            return True
+        elif target < self.value:
+            if self.left is None:
+                return False
+            return self.left.contains(target)
+        elif target >= self.value:
+            if self.right is None:
+                return False
+            return self.right.contains(target)
 
     # Return the maximum value found in the tree
     def get_max(self):
